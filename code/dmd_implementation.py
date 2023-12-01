@@ -9,7 +9,7 @@ def read_csv(file_path):
 
 
 # Load data from CSV file
-file_path = "F:/UROP/dmd/indexData.csv"  # Replace with your actual file path
+file_path = "F:/UROP/dmd/brain_Tumor_dataset.csv"  # Replace with your actual file path
 data = read_csv(file_path)
 
 # Perform DMD
