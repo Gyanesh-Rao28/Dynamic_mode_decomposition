@@ -15,3 +15,8 @@ Using time-series data as the foundation, this linear algebra-based technique re
 ### Brain Tumor dataset
 
 ![TEXT](https://cdn.discordapp.com/attachments/1081571558532853971/1180245038693892216/Screenshot_2023-12-02_020150.png?ex=657cb7d9&is=656a42d9&hm=e2458da0405ebb43287a8bfb91ddf61e12953680dd2a2372bd62c6792e8ce4f1&)
+
+
+### Error
+
+![TEXT](https://cdn.discordapp.com/attachments/1081571558532853971/1180253828877139978/Screenshot_2023-12-02_023341.png?ex=657cc008&is=656a4b08&hm=8d58b51ea5f00f73a80ba83ed274dbaf8f681fba4063bc46de960b59dc137290&)
