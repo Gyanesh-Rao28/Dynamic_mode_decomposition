@@ -6,7 +6,7 @@ Using time-series data as the foundation, this linear algebra-based technique re
 
 # Result
 
-# Original data Vs Reduced data
+## Original data Vs Reduced data
 
 ### Fluid Motion dataset
 
