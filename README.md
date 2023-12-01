@@ -3,8 +3,8 @@
 
 ##Abstract
 
-![TEXT](In 2008, Peter J. Schmid and Joern Sesterhenn created the dimensionality reduction technique known as dynamic mode decomposition (DMD).
-Using time-series data as the foundation, this linear algebra-based technique recovers coherent spatiotemporal patterns—also referred to as dynamic modes—from the observed actions of the system. DMD is especially helpful in situations when the fundamental patterns are complicated enough for conventional mathematical methods to fully comprehend. By using the techniques of eigenvector, eigenvalue and Singular Value Decomposition (SVD), DMD provides an efficient approach for determining the frequencies and amplitude distributions of dominating oscillation modes. The value of DMD as an adaptable instrument for identifying hidden patterns in time-dependent data is highlighted by its capacity to support reduced-order modelling, anomaly detection, and system prediction.)
+In 2008, Peter J. Schmid and Joern Sesterhenn created the dimensionality reduction technique known as dynamic mode decomposition (DMD).
+Using time-series data as the foundation, this linear algebra-based technique recovers coherent spatiotemporal patterns—also referred to as dynamic modes—from the observed actions of the system. DMD is especially helpful in situations when the fundamental patterns are complicated enough for conventional mathematical methods to fully comprehend. By using the techniques of eigenvector, eigenvalue and Singular Value Decomposition (SVD), DMD provides an efficient approach for determining the frequencies and amplitude distributions of dominating oscillation modes. The value of DMD as an adaptable instrument for identifying hidden patterns in time-dependent data is highlighted by its capacity to support reduced-order modelling, anomaly detection, and system prediction.
 
 
 ### fluid Motion dataset
