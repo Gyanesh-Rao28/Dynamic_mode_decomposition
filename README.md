@@ -6,6 +6,10 @@ Using time-series data as the foundation, this linear algebra-based technique re
 
 # Result
 
+## Modes
+
+![TEXT](https://cdn.discordapp.com/attachments/1081571558532853971/1180469590996820078/Screenshot_2023-12-02_165324.png?ex=657d88fa&is=656b13fa&hm=d96d3939fae008d26499d6867444973849a0cd870f8164197667ecfcfa5106f2&)
+
 ## Original data Vs Reduced data
 
 ### Fluid Motion dataset

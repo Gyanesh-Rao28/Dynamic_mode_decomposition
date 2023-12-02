@@ -64,3 +64,25 @@ plt.xlabel("Time")
 plt.ylabel("Error (Frobenius Norm)")
 plt.legend()
 plt.show()
+
+# modes
+# plt.figure(figsize=(12, 6))
+
+# for i in range(modes.shape[1]):
+#     plt.plot(modes[:, i].real, label=f"DMD Mode {i+1}")
+
+# plt.title("DMD Modes")
+# plt.legend()
+# plt.show()
+
+# Plot the DMD modes as histograms
+plt.figure(figsize=(12, 6))
+
+for i in range(modes.shape[1]):
+    plt.hist(modes[:, i].real, bins=50, alpha=0.5, label=f"DMD Mode {i+1}")
+
+plt.title("Histogram of DMD Modes")
+plt.xlabel("Real Part of Mode")
+plt.ylabel("Frequency")
+plt.legend()
+plt.show()

@@ -41,12 +41,7 @@ def dynamic_mode_decomposition(X, dt, r):
     omega = np.log(np.abs(eigenvalues)) / dt
 
     x_p = U_r.T @ X1
-
-    # x_p = U_r @ Sigma_r @ Vt_rcls
     
-
-    print(X1.shape)
-    print(x_p.shape)
 
     return Phi, omega, x_p
 
@@ -73,6 +68,7 @@ data = read_csv(file_path)
 m, n = data.shape
 
 r = min(m, n)
+
 dt = 1.0
 
 Phi, omega, x_p = dynamic_mode_decomposition(data, dt, r)
