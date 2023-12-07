@@ -12,15 +12,14 @@ def calculate_error(A, B):
     return np.linalg.norm(A - B, "fro")
 
 
-# Load data from CSV file
-file_path = "F:/UROP/dmd/brain_Tumor_dataset.csv"  # Replace with your actual file path
+file_path = "F:/UROP/dmd/brain_Tumor_dataset.csv"
 data = read_csv(file_path)
 
 # Perform DMD
 dmd = DMD(svd_rank=-1)
-dmd.fit(data.T)  # Transpose data to have time snapshots in columns
+dmd.fit(data.T) 
 
-# Reconstruct the data using DMD modes
+
 modes = dmd.modes
 reconstructed_data = dmd.reconstructed_data.T
 

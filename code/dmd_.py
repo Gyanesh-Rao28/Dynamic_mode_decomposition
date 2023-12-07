@@ -14,35 +14,37 @@ def read_csv(file_path):
 
 
 def dynamic_mode_decomposition(X, dt, r):
-
-    # Construct the snapshot matrices
+    
+    
     X1 = X[:, :-1]
     X2 = X[:, 1:]
 
-    # Singular Value Decomposition
+    # svd
     U, S, V = svd(X1, full_matrices=False)
 
-    # Truncate matrices
+    res = U.T @ U
+    print(res)
+
+    # Truncate(r)
     U = U[:, :r]
     S = np.diag(S[:r])
     V = V[:r, :]
 
-    # Build A tilde and diagonalize
+    #A tilde and diagonalize
     A_tilde = U.T @ X2 @ V @ np.linalg.pinv(S)
 
     W, eigs = np.linalg.eig(A_tilde)
 
-    # Compute dynamic modes
+    #dynamic modes
     Phi = X2 @ V @ np.linalg.inv(S) @ W
 
-    # dicrete time eigenvalue
     omega = np.log(eigs) / dt  # continous time eigenvalue
 
     return Phi, A_tilde, omega
 
 
 # main
-file_path = "F:/UROP/dmd/fluid_motion.csv"
+file_path="F:/UROP/dmd/brain_Tumor_dataset.csv"
 
 data = read_csv(file_path)
 data = data.T
@@ -71,8 +73,6 @@ for iter in range(data.shape[1]):
 # Compute DMD solution
 X_dmd = np.dot(phi, time_dynamics)
 
-
-# Generate time vector
 time_vector = np.arange(0, dt * data.shape[1], dt)
 
 # Plot the original and reconstructed reduced data for the chosen variable
