@@ -35,7 +35,7 @@ def dynamic_mode_decomposition(X, dt, r):
     # Compute dynamic modes
     Phi = X2 @ V @ np.linalg.inv(S) @ W
 
-    lambda_diag = np.diag(np.exp(np.log(eigs) / dt))  # dicrete time eigenvalue
+    # dicrete time eigenvalue
     omega = np.log(eigs) / dt  # continous time eigenvalue
 
     return Phi, A_tilde, omega
