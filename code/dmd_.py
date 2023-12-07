@@ -14,8 +14,6 @@ def read_csv(file_path):
 
 
 def dynamic_mode_decomposition(X, dt, r):
-    # X: input matrix, each column is a variable, each row is a time snapshot
-    # dt: time step
 
     # Construct the snapshot matrices
     X1 = X[:, :-1]
@@ -40,7 +38,7 @@ def dynamic_mode_decomposition(X, dt, r):
     lambda_diag = np.diag(np.exp(np.log(eigs) / dt))  # dicrete time eigenvalue
     omega = np.log(eigs) / dt  # continous time eigenvalue
 
-    return Phi, A_tilde, omega, lambda_diag
+    return Phi, A_tilde, omega
 
 
 # main
@@ -53,20 +51,20 @@ m, n = data.shape
 r = min(m, n)
 dt = 1.0
 
-phi, A_tilde, omega, lambda_diag = dynamic_mode_decomposition(data, dt, r)
+phi, A_tilde, omega = dynamic_mode_decomposition(data, dt, r)
 
 # Choose a specific column for analysis
 column_index = 0
 
 x = data[:, column_index]
-x = x.reshape(-1, 1)  # Reshape x to make it a 2D array
+x = x.reshape(-1, 1)
 
 b = np.linalg.lstsq(phi, x, rcond=None)[0]
 
 # Initialize DMD dynamics matrix
 time_dynamics = np.zeros((r, data.shape[1]))
 
-# Compute DMD dynamics
+
 for iter in range(data.shape[1]):
     time_dynamics[:, iter] = b.flatten() * np.exp(omega * iter * dt)
 
