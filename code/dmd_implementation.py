@@ -17,7 +17,7 @@ file_path = "F:/UROP/dmd/brain_Tumor_dataset.csv"  # Replace with your actual fi
 data = read_csv(file_path)
 
 # Perform DMD
-dmd = DMD(svd_rank=-1)  # Set svd_rank to -1 for full-rank decomposition
+dmd = DMD(svd_rank=-1)
 dmd.fit(data.T)  # Transpose data to have time snapshots in columns
 
 # Reconstruct the data using DMD modes
@@ -31,7 +31,17 @@ print("\n\nerror: ", error)
 plt.figure(figsize=(12, 6))
 
 for i in range(data.shape[0]):
-    plt.plot(data[i], label=f"original Data (Variable {i+1})", linestyle=":")
+    plt.plot(data[i], label=f"original Data (Variable {i+1})")
+
+
+plt.title("Origina")
+plt.legend()
+plt.show()
+
+
+# ========
+
+plt.figure(figsize=(12, 6))
 
 for i in range(reconstructed_data.shape[0]):
     plt.plot(
@@ -39,6 +49,25 @@ for i in range(reconstructed_data.shape[0]):
         label=f"Reduced Data (Variable {i+1})",
         linestyle="--",
     )
+
+plt.title("Original vs Reconstructed Data")
+plt.legend()
+plt.show()
+
+# ========
+
+plt.figure(figsize=(12, 6))
+
+for i in range(reconstructed_data.shape[0]):
+    plt.plot(
+        reconstructed_data[i].real,
+        label=f"Reduced Data (Variable {i+1})",
+        linestyle="--",
+    )
+
+for i in range(data.shape[0]):
+    plt.plot(data[i], label=f"original Data (Variable {i+1})", linestyle=":")
+
 
 plt.title("Original vs Reconstructed Data")
 plt.legend()
