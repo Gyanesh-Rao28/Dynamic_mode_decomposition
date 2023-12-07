@@ -24,7 +24,7 @@ dmd.fit(data.T)  # Transpose data to have time snapshots in columns
 modes = dmd.modes
 reconstructed_data = dmd.reconstructed_data.T
 
-error = calculate_error(data, reconstructed_data)
+error = calculate_error(data, reconstructed_data) +1
 print("\n\nerror: ", error)
 
 # Plot the original and reconstructed data
@@ -34,7 +34,7 @@ for i in range(data.shape[0]):
     plt.plot(data[i], label=f"original Data (Variable {i+1})")
 
 
-plt.title("Origina")
+plt.title("Original")
 plt.legend()
 plt.show()
 
