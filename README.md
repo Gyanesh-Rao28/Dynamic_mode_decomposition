@@ -8,7 +8,7 @@ Using time-series data as the foundation, this linear algebra-based technique re
 
 ## Modes
 
-![TEXT](https://cdn.discordapp.com/attachments/1081571558532853971/1180469590996820078/Screenshot_2023-12-02_165324.png?ex=657d88fa&is=656b13fa&hm=d96d3939fae008d26499d6867444973849a0cd870f8164197667ecfcfa5106f2&)
+![TEXT](https://cdn.discordapp.com/attachments/1081571558532853971/1180494533356699739/Screenshot_2023-12-02_183333.png?ex=657da035&is=656b2b35&hm=96c4ad454645577bfd156bcc1e0424065a8130f2682e45498f2dc7f025948d4f&)
 
 ## Original data Vs Reduced data
 

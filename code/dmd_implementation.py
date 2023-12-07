@@ -65,24 +65,42 @@ plt.ylabel("Error (Frobenius Norm)")
 plt.legend()
 plt.show()
 
-# modes
-# plt.figure(figsize=(12, 6))
 
-# for i in range(modes.shape[1]):
-#     plt.plot(modes[:, i].real, label=f"DMD Mode {i+1}")
+# Determine the number of rows and columns for subplots
+num_modes = modes.shape[1]
+num_rows = min(2, num_modes)
+num_cols = (num_modes + num_rows - 1) // num_rows
 
-# plt.title("DMD Modes")
-# plt.legend()
-# plt.show()
+# Create subplots for each mode
+fig, axs = plt.subplots(num_rows, num_cols, figsize=(12, 8))
+fig.suptitle("DMD Modes")
 
-# Plot the DMD modes as histograms
-plt.figure(figsize=(12, 6))
+# Plot each DMD mode using different types of plots
+for i in range(num_modes):
+    ax = axs[i // num_cols, i % num_cols]
 
-for i in range(modes.shape[1]):
-    plt.hist(modes[:, i].real, bins=50, alpha=0.5, label=f"DMD Mode {i+1}")
+    # Line plot
+    ax.plot(modes[:, i], label=f"Mode {i + 1}", linewidth=2)
 
-plt.title("Histogram of DMD Modes")
-plt.xlabel("Real Part of Mode")
-plt.ylabel("Frequency")
-plt.legend()
+    # Scatter plot
+    ax.scatter(range(len(modes[:, i])), modes[:, i], label=f"Mode {i + 1}", color="red")
+
+    # Bar plot
+    ax.bar(
+        range(len(modes[:, i])),
+        modes[:, i],
+        label=f"Mode {i + 1}",
+        color="green",
+        alpha=0.5,
+    )
+
+    # Stem plot
+    ax.stem(modes[:, i], label=f"Mode {i + 1}", basefmt="b", linefmt="g")
+
+    ax.set_title(f"Mode {i + 1}")
+    ax.set_xlabel("Time")
+    ax.set_ylabel("Amplitude")
+    ax.legend()
+
+plt.tight_layout(rect=[0, 0, 1, 0.96])  # Adjust layout for title
 plt.show()

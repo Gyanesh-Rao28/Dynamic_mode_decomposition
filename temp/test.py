@@ -28,10 +28,7 @@ def dynamic_mode_decomposition(X, dt, r):
     U = U[:, :r]
     S = np.diag(S[:r])
     V = V[:r, :]
-    print(V)
 
-    print(X2.shape)
-    print(V.shape)
     # Build A tilde and diagonalize
     A_tilde = U.T @ X2 @ V @ np.linalg.pinv(S)
 
@@ -40,49 +37,57 @@ def dynamic_mode_decomposition(X, dt, r):
     # Compute dynamic modes
     Phi = X2 @ V @ np.linalg.inv(S) @ W
 
-    return Phi, A_tilde
+    lambda_diag = np.diag(np.exp(np.log(eigs) / dt))
+    omega = np.log(eigs) / dt
+
+    return Phi, A_tilde, omega, lambda_diag
 
 
 # main
-file_path = "F:/UROP/dmd/indexData.csv"
+file_path = "F:/UROP/dmd/fluid_motion.csv"
 
 data = read_csv(file_path)
-
 data = data.T
 
 m, n = data.shape
-
 r = min(m, n)
-
 dt = 1.0
 
-phi, A_tilde = dynamic_mode_decomposition(data, dt, r)
+phi, A_tilde, omega, lambda_diag = dynamic_mode_decomposition(data, dt, r)
+
+# Choose a specific column for analysis
+column_index = 0
+
+x = data[:, column_index]
+x = x.reshape(-1, 1)  # Reshape x to make it a 2D array
+
+b = np.linalg.lstsq(phi, x, rcond=None)[0]
+
+# Initialize DMD dynamics matrix
+time_dynamics = np.zeros((r, data.shape[1]))
+
+# Compute DMD dynamics
+for iter in range(data.shape[1]):
+    time_dynamics[:, iter] = b.flatten() * np.exp(omega * iter * dt)
+
+# Compute DMD solution
+X_dmd = np.dot(phi, time_dynamics)
+
 
 # Generate time vector
 time_vector = np.arange(0, dt * data.shape[1], dt)
 
-# Number of variables in your data
-num_variables = data.shape[0]
-
-# Plot the original, reconstructed_reduced_data for each variable
+# Plot the original and reconstructed reduced data for the chosen variable
 plt.figure(figsize=(12, 8))
-
-for i in range(3):
-    plt.plot(
-        time_vector[: data.shape[1]],
-        data[i, :],
-        label=f"original Data (Variable {i+1})",
-        linewidth=2,
-        linestyle=":",
-    )
-    plt.plot(
-        time_vector[: A_tilde.shape[1]],
-        A_tilde[i - 1, :],
-        label=f"Reduced Data (Variable {i+1})",
-        linewidth=2,
-    )
-
-plt.title("Original Data V/S Reconstructed Reduced Data")
+plt.plot(
+    time_vector,
+    data[column_index, :],
+    label="Original Data",
+    linewidth=2,
+    linestyle=":",
+)
+plt.plot(time_vector, X_dmd[0, :], label="Reconstructed Reduced Data", linewidth=2)
+plt.title("Original Data vs. Reconstructed Reduced Data")
 plt.xlabel("Time")
 plt.ylabel("Amplitude")
 plt.legend()
