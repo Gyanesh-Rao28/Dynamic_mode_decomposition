@@ -22,8 +22,6 @@ def dynamic_mode_decomposition(X, dt, r):
     # svd
     U, S, V = svd(X1, full_matrices=False)
 
-    res = U.T @ U
-    print(res)
 
     # Truncate(r)
     U = U[:, :r]
@@ -39,6 +37,8 @@ def dynamic_mode_decomposition(X, dt, r):
     Phi = X2 @ V @ np.linalg.inv(S) @ W
 
     omega = np.log(eigs) / dt  # continous time eigenvalue
+
+
 
     return Phi, A_tilde, omega
 
